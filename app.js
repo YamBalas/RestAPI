@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // Import routes
 const postRoutes = require('./routes/postRoutes');
-// const commentRoutes = require('./routes/commentRoutes');
+const commentRoutes = require('./routes/commentRoutes');
 
 const app = express();
 
@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 
 // Use routes
 app.use('/api/posts', postRoutes);
-// app.use('/api/comments', commentRoutes);
+app.use('/api/comments', commentRoutes);
 
 const port = process.env.PORT || 3000;
 

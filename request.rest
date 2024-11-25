@@ -12,11 +12,9 @@ Content-Type: application/json
 GET http://localhost:3000/api/posts
 
 ### Get a Post by ID
-
 GET http://localhost:3000/api/posts/<post_id>
 
 ### Update a Post
-
 PUT http://localhost:3000/api/posts/<post_id>
 Content-Type: application/json
 
@@ -33,4 +31,18 @@ Content-Type: application/json
   "postId": "<post_id>",
   "sender": "User123",
   "content": "This is a comment."
+}
+
+### Get All Comments
+GET http://localhost:3000/api/comments
+
+### Get a Comment by ID
+GET http://localhost:3000/api/comments/<comment_id>
+
+### Update a Comment
+PUT http://localhost:3000/api/comments/<comment_id>
+Content-Type: application/json
+
+{
+  "content": "Updated comment content."
 }
