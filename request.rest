@@ -1,0 +1,36 @@
+### Add a New Post
+POST http://localhost:3000/api/posts
+Content-Type: application/json
+
+{
+  "title": "First Post",
+  "content": "This is my first post.",
+  "sender": "User123"
+}
+
+### Get All Posts
+GET http://localhost:3000/api/posts
+
+### Get a Post by ID
+
+GET http://localhost:3000/api/posts/<post_id>
+
+### Update a Post
+
+PUT http://localhost:3000/api/posts/<post_id>
+Content-Type: application/json
+
+{
+  "title": "Updated Title",
+  "content": "Updated content."
+}
+
+### Add a Comment
+POST http://localhost:3000/api/comments
+Content-Type: application/json
+
+{
+  "postId": "<post_id>",
+  "sender": "User123",
+  "content": "This is a comment."
+}
