@@ -9,7 +9,7 @@ const postSchema = new mongoose.Schema({
     type: String, 
     required: true 
     },
-  sender: { 
+  owner: { 
     type: String, 
     required: true 
     },
@@ -19,4 +19,6 @@ const postSchema = new mongoose.Schema({
     },
 });
 
-// module.exports = mongoose.model('Post', postSchema);
+ const postModel = mongoose.model('Post', postSchema);
+
+ module.exports = postModel;
