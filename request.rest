@@ -5,17 +5,17 @@ Content-Type: application/json
 {
   "title": "First Post",
   "content": "This is my first post.",
-  "sender": "User123"
+  "owner": "User123"
 }
 
 ### Get All Posts
 GET http://localhost:3000/api/posts
 
 ### Get a Post by ID
-GET http://localhost:3000/api/posts/<post_id>
+GET http://localhost:3000/api/posts/674b7dc5d5acb0cccd777350
 
 ### Update a Post
-PUT http://localhost:3000/api/posts/<post_id>
+PUT http://localhost:3000/api/posts/674b7dc5d5acb0cccd77734f
 Content-Type: application/json
 
 {
@@ -29,7 +29,7 @@ Content-Type: application/json
 
 {
   "postId": "<post_id>",
-  "sender": "User123",
+  "owner": "User123",
   "content": "This is a comment."
 }
 
