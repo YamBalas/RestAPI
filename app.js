@@ -22,7 +22,7 @@ app.use('/api/comments', commentRoutes);
 mongoose.connect(process.env.DB_CONNECT);
 const db = mongoose.connection;
 db.once('connected', () => console.log('Connected to MongoDB'));
-db.on('error', (error) => console.error('MongoDB connection failed:', err));
+db.on('error', (error) => console.error('MongoDB connection failed:', error));
 
 const port = process.env.PORT || 3000;
 
