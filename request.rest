@@ -15,7 +15,7 @@ GET http://localhost:3000/api/posts
 GET http://localhost:3000/api/posts/67543d4ce1cd97471bb8e479
 
 ### Update a Post
-PUT http://localhost:3000/api/posts/67543d4ce1cd97471bb8e47a
+PUT http://localhost:3000/api/posts/67543d4ce1cd97471bb8e479
 Content-Type: application/json
 
 {
@@ -28,7 +28,7 @@ POST http://localhost:3000/api/comments
 Content-Type: application/json
 
 {
-  "postId": "<post_id>",
+  "postId": "67543d4ce1cd97471bb8e479",
   "owner": "User123",
   "content": "This is a comment."
 }
@@ -37,10 +37,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/comments
 
 ### Get a Comment by ID
-GET http://localhost:3000/api/comments/<comment_id>
+GET http://localhost:3000/api/comments/675714954cbd9f933afe76af
 
 ### Update a Comment
-PUT http://localhost:3000/api/comments/<comment_id>
+PUT http://localhost:3000/api/comments/675714954cbd9f933afe76af
 Content-Type: application/json
 
 {
