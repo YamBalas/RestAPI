@@ -1,4 +1,3 @@
-
 const mongoose = require('mongoose');
 const postModel = require('../models/postModel');
 
