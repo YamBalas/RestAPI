@@ -1,42 +1,85 @@
-const addComment = async (req, res) => {
+const mongoose = require('mongoose');
+const commentModel = require('../models/commentModel'); 
+
+// Create a new comment
+const createComment = async (req, res) => {
     try {
-        // comment creation logic
-        res.status(201).json({ message: 'Comment created successfully' });
+        const { content, owner, postId } = req.body;
+
+        // Validate required fields
+        if (!content || !owner || !postId) {
+            return res.status(400).json({ error: 'Content, owner, and postId are required.' });
+        }
+
+        const newComment = new commentModel({ content, owner, postId });
+        const savedComment = await newComment.save();
+
+        res.status(201).json(savedComment);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error.message });
     }
-  };
-  
-  const getAllComments = async (req, res) => {
+};
+
+// Get all comments (with optional filtering by postId)
+const getAllComments = async (req, res) => {
     try {
-        // get all comments logic
-        res.status(200).json({ message: 'All comments retrieved' });
+        const { postId } = req.query;
+
+        const filter = postId ? { postId } : {};
+        const comments = await commentModel.find(filter).populate('postId').sort({ createdAt: -1 });
+
+        res.status(200).json(comments);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error.message });
     }
-  };
-  
-  const getCommentById = async (req, res) => {
+};
+
+// Get a single comment by ID
+const getCommentById = async (req, res) => {
     try {
-        // get comment by id logic
-        res.status(200).json({ message: 'Comment retrieved' });
+        const { id } = req.params;
+
+        const comment = await commentModel.findById(id).populate('postId');
+        if (!comment) {
+            return res.status(404).json({ error: 'Comment not found.' });
+        }
+
+        res.status(200).json(comment);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error.message });
     }
-  };
-  
-  const updateComment = async (req, res) => {
+};
+
+// Update a comment
+const updateComment = async (req, res) => {
     try {
-        // update comment logic
-        res.status(200).json({ message: 'Comment updated successfully' });
+        const { id } = req.params;
+        const { content } = req.body;
+
+        // Only content can be updated for now
+        if (!content) {
+            return res.status(400).json({ error: 'Content is required to update.' });
+        }
+
+        const updatedComment = await commentModel.findByIdAndUpdate(
+            id,
+            { content },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedComment) {
+            return res.status(404).json({ error: 'Comment not found.' });
+        }
+
+        res.status(200).json(updatedComment);
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        res.status(500).json({ error: error.message });
     }
-  };
-  
-  module.exports = {
-    addComment,
+};
+
+module.exports = {
+    createComment,
     getAllComments,
     getCommentById,
-    updateComment
-  };
+    updateComment,
+};
