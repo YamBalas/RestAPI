@@ -69,6 +69,38 @@ const getPostById = async (req, res) => {
   }
 };
 
+const deletePost = async (req, res) => {
+  const postId = req.params.id;
+
+  try {
+    // Validate the post ID
+    if (!mongoose.Types.ObjectId.isValid(postId)) {
+      return res.status(400).json({ message: 'Invalid post ID' });
+    }
+    const deletedPost = await postModel.findByIdAndDelete(
+      postId,
+      req.body
+    );
+
+    // When post does not exist
+    if (!deletePost) {
+      return res.status(404).json({ message: 'Post not found' });
+    }
+
+    // Return success response with the deleted post
+    res.status(200).json({
+      message: 'Post deleted successfully',
+      data: deletedPost
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      message: 'An error occurred while deleting the post',
+      error: error.message
+    });
+  }
+}
+
 const updatePost = async (req, res) => {
   const postId = req.params.id;
 
@@ -114,5 +146,6 @@ module.exports = {
   addPost,
   getAllPosts,
   getPostById,
+  deletePost,
   updatePost
 };
