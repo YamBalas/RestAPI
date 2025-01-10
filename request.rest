@@ -9,13 +9,16 @@ Content-Type: application/json
 }
 
 ### Get All Posts
-GET http://localhost:3000/api/posts
+GET http://localhost:3000/api/posts?owner=User123
 
 ### Get a Post by ID
-GET http://localhost:3000/api/posts/67543d4ce1cd97471bb8e479
+GET http://localhost:3000/api/posts/677e8a83f302fc32018c9f23
+
+###  Delete a Post by ID
+DELETE http://localhost:3000/api/posts/677e8a83f302fc32018c9f23
 
 ### Update a Post
-PUT http://localhost:3000/api/posts/67543d4ce1cd97471bb8e479
+PUT http://localhost:3000/api/posts/677e8a83f302fc32018c9f23
 Content-Type: application/json
 
 {
@@ -37,10 +40,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/comments
 
 ### Get a Comment by ID
-GET http://localhost:3000/api/comments/675714954cbd9f933afe76af
+GET http://localhost:3000/api/comments/677e8a83f302fc32018c9f23
 
 ### Update a Comment
-PUT http://localhost:3000/api/comments/675714954cbd9f933afe76af
+PUT http://localhost:3000/api/comments/677e8a83f302fc32018c9f23
 Content-Type: application/json
 
 {
